@@ -8,6 +8,9 @@ const toDoItem = () => {
     const getTitle = () => title;
     const setDesc = (text) => description = text;
     const getDesc = () => description;
+    const setDate = (date) => dueDate = date;
+    const getDate = () => dueDate;
+
     const addTag = (newTag) => this.tags.push(newTag);
     const removeTag = (tagToRemove) =>{
         if (tags.indexOf(tagToRemove)>=0){
@@ -15,6 +18,7 @@ const toDoItem = () => {
         }
     }
     const isCompleted= ()=>completed;
+    const setCompleted =(bool) => completed = bool;
     const getTags = ()=> tags;
     const setTags = (t) => tags = t;
     return {
@@ -22,10 +26,13 @@ const toDoItem = () => {
       getTitle,
       setDesc,
       getDesc,
+      setDate,
+      getDate,
       addTag, 
       getTags,
       setTags,
       isCompleted,
+      setCompleted,
       removeTag,
     };
   };
