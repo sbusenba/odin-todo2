@@ -1,7 +1,7 @@
 const itemForm = (submitFunction)=>{
 let form = document.createElement('form')
 let legend = document.createElement('legend')
-legend.innerText = 'Add New Project:'
+legend.innerText = 'Add New Task:'
 form.appendChild(legend);
 
 let titleLabel = document.createElement('label');

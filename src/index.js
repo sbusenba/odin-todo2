@@ -1,26 +1,71 @@
 import navBar from './navBar'
 import itemForm from './addItemForm';
-
+import toDoItem from './toDoItem';
+import toDoList from './toDoList';
+import itemView from './itemView';
 
 const items = ['Task List','Projects','Add Item']
 let selected = 2;
+let myToDoList = toDoList();
+
+const save = ()=>{
+    localStorage.setItem('toDoList',JSON.stringify(myToDoList.list))
+}
+function clearBody(){
+    while (body.firstChild) {
+        body.removeChild(body.firstChild)
+    }
+}
 const addItem =() => {
-console.log('adding!')
-console.log(document.querySelector('#titleinput').value)
+    let newToDo = toDoItem();
+    newToDo.title = document.querySelector('#titleinput').value;
+    console.log(document.querySelector('#titleinput').value)
+    newToDo.description = document.querySelector('#description').value;
+    newToDo.dueDate = document.querySelector('#date').value;
+    myToDoList.addItem(newToDo);
+    save()
+}
+const itemClicked = (e) => {
+
+    console.log(e.target.parentNode.getAttribute('data-key'));
+    myToDoList.list.forEach((item,index)=> {
+        if (index === parseInt(e.target.parentNode.getAttribute('data-key'))){
+            item.selected = true;
+        } else {
+            item.selected = false;
+        }
+    })
+
+    clearBody()
+    body.appendChild(myNav)
+    myToDoList.list.forEach((item,index)=>{
+        let newItemDiv =itemView(item);
+        newItemDiv.setAttribute('data-key', index);
+        if (item.selected === false){
+            newItemDiv.addEventListener('click',itemClicked)
+        }
+        body.appendChild(newItemDiv);
+    });
+
 }
 
 
-
 const navClicked = (e) => {
- console.log(e.target.textContent)
  selected = items.indexOf(e.target.textContent)
- while (body.firstChild) {
-     body.removeChild(body.firstChild)
- }
+    clearBody();
  switch (e.target.textContent){
     case 'Task List':
         myNav = navBar(items,selected,navClicked)
         body.appendChild(myNav)
+        console.log(myToDoList.list)
+        myToDoList.list.forEach((item,index)=>{
+            let newItemDiv =itemView(item);
+            newItemDiv.setAttribute('data-key', index);
+            if (item.selected == false){
+                newItemDiv.addEventListener('click',itemClicked)
+            }
+            body.appendChild(newItemDiv);
+        });
 
         break;
     case 'Projects':
@@ -32,15 +77,29 @@ const navClicked = (e) => {
        myNav = navBar(items,selected,navClicked)
         body.appendChild(myNav)
         body.appendChild(myAddItem)
-        
-        
-        
 
         break;
     default:
         break; 
  } 
 }
+
+
+
+if (localStorage.getItem('toDoList')){
+    let storedToDoList = JSON.parse(localStorage.getItem('toDoList'))
+    console.table(storedToDoList)
+    storedToDoList.forEach((item)=>{
+        let newToDo = toDoItem()
+        newToDo.title = item.title;
+        newToDo.description = item.description;
+        newToDo.dueDate = item.dueDate;
+        newToDo.completed = item.completed;
+        newToDo.selected = false;
+        myToDoList.addItem(newToDo)
+    })
+}
+
 
 
 let body= document.querySelector('body')

@@ -4,6 +4,7 @@ const toDoItem = () => {
     let description = "an item on your todo list";
     let completed = false;
     let dueDate = new Date(); 
+    let selected = false;
     const setTitle = (text) => title = text;
     const getTitle = () => title;
     const setDesc = (text) => description = text;
@@ -22,18 +23,24 @@ const toDoItem = () => {
     const getTags = ()=> tags;
     const setTags = (t) => tags = t;
     return {
+      title,
       setTitle,
       getTitle,
+      description,
       setDesc,
       getDesc,
+      dueDate,
       setDate,
       getDate,
+      tags,
       addTag, 
       getTags,
       setTags,
+      completed,
       isCompleted,
       setCompleted,
       removeTag,
+      selected,
     };
   };
   

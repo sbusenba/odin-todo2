@@ -1,0 +1,8 @@
+body {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+.itemDiv {
+ background-color: #6b016b;
+}
