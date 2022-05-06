@@ -16,10 +16,32 @@ function clearBody(){
         body.removeChild(body.firstChild)
     }
 }
-
-function deleteItem(e){
-console.log(this.parentNode.getAttribute('data-key'));
+function showList(){
+    myToDoList.list.forEach((item,index)=>{
+        let newItemDiv =itemView(item);
+        newItemDiv.setAttribute('data-key', index);
+        if (item.selected === false){
+            newItemDiv.addEventListener('click',itemClicked)
+            body.appendChild(newItemDiv);
+        } else {
+            body.appendChild(newItemDiv);
+            let deleteButton = document.querySelector('.deleteButton');
+            deleteButton.addEventListener('click',deleteItem);
+            let editButton = document.querySelector('.editButton');
+            editButton.addEventListener('click',editItem);
+        }
+    });
 }
+function deleteItem(e){
+    myToDoList.deleteItem(this.parentNode.getAttribute('data-key'));
+    clearBody()
+    body.appendChild(myNav)
+    showList()
+}
+function editItem(){
+    console.log(this.parentNode.getAttribute('data-key'));
+}
+
 const addItem =() => {
     let newToDo = toDoItem();
     newToDo.title = document.querySelector('#titleinput').value;
@@ -42,18 +64,7 @@ const itemClicked = (e) => {
 
     clearBody()
     body.appendChild(myNav)
-    myToDoList.list.forEach((item,index)=>{
-        let newItemDiv =itemView(item);
-        newItemDiv.setAttribute('data-key', index);
-        if (item.selected === false){
-            newItemDiv.addEventListener('click',itemClicked)
-            body.appendChild(newItemDiv);
-        } else {
-            body.appendChild(newItemDiv);
-            let deleteButton = document.querySelector('.deleteButton');
-            deleteButton.addEventListener('click',deleteItem);
-        }
-    });
+    showList();
 
 }
 
