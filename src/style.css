@@ -5,4 +5,5 @@ body {
 }
 .itemDiv {
  background-color: #6b016b;
+ min-height:30px;
 }

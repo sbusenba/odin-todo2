@@ -16,8 +16,8 @@ function clearBody(){
         body.removeChild(body.firstChild)
     }
 }
-function showList(){
-    myToDoList.list.forEach((item,index)=>{
+function showList(list){
+    list.forEach((item,index)=>{
         let newItemDiv =itemView(item);
         newItemDiv.setAttribute('data-key', index);
         if (item.selected === false){
@@ -36,7 +36,8 @@ function deleteItem(e){
     myToDoList.deleteItem(this.parentNode.getAttribute('data-key'));
     clearBody()
     body.appendChild(myNav)
-    showList()
+    showList(myToDoList.list)
+    save();
 }
 function editItem(){
     console.log(this.parentNode.getAttribute('data-key'));
@@ -64,7 +65,7 @@ const itemClicked = (e) => {
 
     clearBody()
     body.appendChild(myNav)
-    showList();
+    showList(myToDoList.list);
 
 }
 

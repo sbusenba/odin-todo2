@@ -7,9 +7,7 @@ const itemView = (item) => {
         let itemTitleDiv = document.createElement('div')
         itemTitleDiv.classList.add('itemTitleDiv')  
         itemTitleDiv.textContent= item.title
-        console.log('getting title...')
-        console.log(item.title)
-        console.log('did it work?')        
+
         itemTextDiv.appendChild(itemTitleDiv)
         let itemDescDiv = document.createElement('div')
         itemDescDiv.classList.add('itemDescDiv')
