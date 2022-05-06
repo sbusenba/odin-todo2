@@ -16,6 +16,10 @@ function clearBody(){
         body.removeChild(body.firstChild)
     }
 }
+
+function deleteItem(e){
+console.log(this.parentNode.getAttribute('data-key'));
+}
 const addItem =() => {
     let newToDo = toDoItem();
     newToDo.title = document.querySelector('#titleinput').value;
@@ -43,8 +47,12 @@ const itemClicked = (e) => {
         newItemDiv.setAttribute('data-key', index);
         if (item.selected === false){
             newItemDiv.addEventListener('click',itemClicked)
+            body.appendChild(newItemDiv);
+        } else {
+            body.appendChild(newItemDiv);
+            let deleteButton = document.querySelector('.deleteButton');
+            deleteButton.addEventListener('click',deleteItem);
         }
-        body.appendChild(newItemDiv);
     });
 
 }
