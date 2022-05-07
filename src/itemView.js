@@ -2,6 +2,7 @@ const itemView = (item) => {
     let itemDiv = document.createElement('div')
     itemDiv.classList.add('itemDiv')
     if (item.selected){
+        itemDiv.classList.add('selected')
         let itemTextDiv = document.createElement('div')
         itemTextDiv.classList.add('itemTextDiv')
         let itemTitleDiv = document.createElement('div')

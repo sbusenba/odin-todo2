@@ -4,6 +4,23 @@ body {
     gap:10px;
 }
 .itemDiv {
- background-color: #6b016b;
- min-height:30px;
+ background-color:#fc51fc;
+ margin:5px;
+ padding:10px;
+ display:flex;
+ flex-direction: row;
+ border-radius:3px;
+ justify-content: space-between;
+}
+.priorityContainer{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+.itemDiv.selected{
+    border: 5px solid #5b0169
+}
+.itemTitleDiv {
+    pointer-events: none;
+    font-size: larger;
 }

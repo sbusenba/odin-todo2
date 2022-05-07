@@ -54,9 +54,9 @@ const addItem =() => {
 }
 const itemClicked = (e) => {
 
-    console.log(e.target.parentNode.getAttribute('data-key'));
+    console.log(e.target.getAttribute('data-key'));
     myToDoList.list.forEach((item,index)=> {
-        if (index === parseInt(e.target.parentNode.getAttribute('data-key'))){
+        if (index === parseInt(e.target.getAttribute('data-key'))){
             item.selected = true;
         } else {
             item.selected = false;
