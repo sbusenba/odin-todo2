@@ -3,10 +3,12 @@ import itemForm from './addItemForm';
 import toDoItem from './toDoItem';
 import toDoList from './toDoList';
 import itemView from './itemView';
+import itemEditForm from './editItemView';
 
 const items = ['Task List','Projects','Add Item']
 let selected = 2;
 let myToDoList = toDoList();
+let editIndex = 0;
 
 const save = ()=>{
     localStorage.setItem('toDoList',JSON.stringify(myToDoList.list))
@@ -16,6 +18,7 @@ function clearBody(){
         body.removeChild(body.firstChild)
     }
 }
+
 function showList(list){
     list.forEach((item,index)=>{
         let newItemDiv =itemView(item);
@@ -39,14 +42,29 @@ function deleteItem(e){
     showList(myToDoList.list)
     save();
 }
+function editButtonPushed(){
+    myToDoList.list[editIndex].title = document.querySelector('#titleinput').value;
+    myToDoList.list[editIndex].description = document.querySelector('#description').value;
+    myToDoList.list[editIndex].dueDate = document.querySelector('#date').value; 
+    clearBody()
+    body.appendChild(myNav)
+    showList(myToDoList.list)
+    save();
+}
 function editItem(){
-    console.log(this.parentNode.getAttribute('data-key'));
+    editIndex = this.parentNode.getAttribute('data-key');
+    
+    clearBody()
+    body.appendChild(myNav)
+    body.append(itemEditForm(myToDoList.list[editIndex],editButtonPushed))
+    
+   
+
 }
 
 const addItem =() => {
     let newToDo = toDoItem();
     newToDo.title = document.querySelector('#titleinput').value;
-    console.log(document.querySelector('#titleinput').value)
     newToDo.description = document.querySelector('#description').value;
     newToDo.dueDate = document.querySelector('#date').value;
     myToDoList.addItem(newToDo);
