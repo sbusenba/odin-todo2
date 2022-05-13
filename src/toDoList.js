@@ -6,9 +6,14 @@ const toDoList = () => {
     const deleteItem = (index)=>{
       list.splice(index,1);
     }
-    
+
+    const getProjects = ()=>{
+      let projects = list.map((listItem)=> listItem.project)
+      return projects;
+    }
     return {
       list,
+      getProjects,
       addItem,
       deleteItem,
     };

@@ -27,6 +27,16 @@ const itemEditForm = (editItem,editFunction)=>{
     descLabel.appendChild(descInput)
     form.appendChild(descLabel)
     
+    let projLabel = document.createElement('label');
+    projLabel.innerText = 'Project:';
+    projLabel.setAttribute('for','project');
+    let projInput =document.createElement('textarea');
+    projInput.id='project'
+    projInput.setAttribute('rows', 3)
+    projInput.value= editItem.project;
+    projInput.setAttribute('columns',20)
+    projLabel.appendChild(projInput)
+    form.appendChild(projLabel)
     
     let dateLabel = document.createElement('label');
     dateLabel.innerText = 'Date:';

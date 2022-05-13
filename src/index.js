@@ -46,6 +46,7 @@ function editButtonPushed(){
     myToDoList.list[editIndex].title = document.querySelector('#titleinput').value;
     myToDoList.list[editIndex].description = document.querySelector('#description').value;
     myToDoList.list[editIndex].dueDate = document.querySelector('#date').value; 
+    myToDoList.list[editIndex].project = document.querySelector('#project').value;
     clearBody()
     body.appendChild(myNav)
     showList(myToDoList.list)
