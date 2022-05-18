@@ -4,6 +4,7 @@ import toDoItem from './toDoItem';
 import toDoList from './toDoList';
 import itemView from './itemView';
 import itemEditForm from './editItemView';
+import projectView from './projectView';
 
 const items = ['Task List','Projects','Add Item']
 let selected = 2;
@@ -71,6 +72,13 @@ const addItem =() => {
     myToDoList.addItem(newToDo);
     save()
 }
+const projectClicked=(e) =>{
+    myToDoList.setBGColor(e.target.parentNode.firstChild.textContent,e.target.value)
+    e.target.parentNode.style.backgroundColor = e.target.value;
+    save();
+
+}
+
 const itemClicked = (e) => {
 
     console.log(e.target.getAttribute('data-key'));
@@ -110,6 +118,11 @@ const navClicked = (e) => {
     case 'Projects':
         myNav = navBar(items,selected,navClicked)
         body.appendChild(myNav)
+        myToDoList.getProjects().forEach((projectName)=>body.append(projectView(projectName,myToDoList.getColor(projectName))));
+        document.querySelectorAll('.colorinput').forEach((input)=>{
+            input.addEventListener('change',projectClicked)
+        
+        })
         break;
 
     case 'Add Item':
@@ -135,6 +148,8 @@ if (localStorage.getItem('toDoList')){
         newToDo.dueDate = item.dueDate;
         newToDo.completed = item.completed;
         newToDo.selected = false;
+        newToDo.project= item.project;
+        newToDo.color = item.color
         myToDoList.addItem(newToDo)
     })
 }

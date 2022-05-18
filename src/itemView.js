@@ -1,6 +1,7 @@
 const itemView = (item) => {
     let itemDiv = document.createElement('div')
     itemDiv.classList.add('itemDiv')
+    itemDiv.style.backgroundColor = item.color;
     if (item.selected){
         itemDiv.classList.add('selected')
         let itemTextDiv = document.createElement('div')
