@@ -59,8 +59,6 @@ function editItem(){
     clearBody()
     body.appendChild(myNav)
     body.append(itemEditForm(myToDoList.list[editIndex],editButtonPushed))
-    
-   
 
 }
 
@@ -105,6 +103,7 @@ const navClicked = (e) => {
         myNav = navBar(items,selected,navClicked)
         body.appendChild(myNav)
         console.log(myToDoList.list)
+        myToDoList.list.forEach(item=>item.selected = false)
         myToDoList.list.forEach((item,index)=>{
             let newItemDiv =itemView(item);
             newItemDiv.setAttribute('data-key', index);
@@ -119,7 +118,7 @@ const navClicked = (e) => {
         myNav = navBar(items,selected,navClicked)
         body.appendChild(myNav)
         myToDoList.getProjects().forEach((projectName)=>body.append(projectView(projectName,myToDoList.getColor(projectName))));
-        document.querySelectorAll('.colorinput').forEach((input)=>{
+        document.querySelectorAll('.colorInput').forEach((input)=>{
             input.addEventListener('change',projectClicked)
         
         })
