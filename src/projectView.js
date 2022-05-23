@@ -7,6 +7,7 @@ const projectView = (project,color)=>{
     projectDiv.appendChild(projectTitle) ;
     let colorInput = document.createElement('input');
     colorInput.classList.add('colorInput')
+    colorInput.value = color;
     colorInput.type = 'color';
     projectDiv.appendChild(colorInput);
 
