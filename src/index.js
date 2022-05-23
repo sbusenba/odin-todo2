@@ -36,6 +36,10 @@ function showList(list){
         }
     });
 }
+
+
+
+
 function deleteItem(e){
     myToDoList.deleteItem(this.parentNode.getAttribute('data-key'));
     clearBody()
@@ -70,13 +74,22 @@ const addItem =() => {
     myToDoList.addItem(newToDo);
     save()
 }
-const projectClicked=(e) =>{
+const projectColor=(e) =>{
     myToDoList.setBGColor(e.target.parentNode.firstChild.textContent,e.target.value)
     e.target.parentNode.style.backgroundColor = e.target.value;
     save();
 
 }
+const projectClicked= (e) =>{
+    console.log(e.target)
+    if (e.target.type !=='color'){
+        clearBody()
+        body.appendChild(myNav)
+        showList(myToDoList.list.filter(item=>item.project===e.target.firstChild.textContent))
+        console.log(e.target.firstChild.textContent)
+    } 
 
+}
 const itemClicked = (e) => {
 
     console.log(e.target.getAttribute('data-key'));
@@ -119,8 +132,12 @@ const navClicked = (e) => {
         body.appendChild(myNav)
         myToDoList.getProjects().forEach((projectName)=>body.append(projectView(projectName,myToDoList.getColor(projectName))));
         document.querySelectorAll('.colorInput').forEach((input)=>{
-            input.addEventListener('change',projectClicked)
+            input.addEventListener('change',projectColor)
         
+        })
+        let projects = document.querySelectorAll('.projectDiv')
+        projects.forEach((projectDiv)=>{
+            projectDiv.addEventListener('click',projectClicked)
         })
         break;
 
