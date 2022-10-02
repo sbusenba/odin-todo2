@@ -2,6 +2,7 @@ const toDoList = () => {
     const list = new Array(0);
     const addItem = (item) => {
       item.priority = list.length
+      item.color = getColor(item.project)
       list.push(item)
     };
     const deleteItem = (index)=>{
