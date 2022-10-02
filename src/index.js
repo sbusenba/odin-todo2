@@ -48,10 +48,17 @@ function deleteItem(e){
     save();
 }
 function editButtonPushed(){
-    myToDoList.list[editIndex].title = document.querySelector('#titleinput').value;
-    myToDoList.list[editIndex].description = document.querySelector('#description').value;
-    myToDoList.list[editIndex].dueDate = document.querySelector('#date').value; 
-    myToDoList.list[editIndex].project = document.querySelector('#project').value;
+    let titleInput =document.querySelector('#titleinput')
+    myToDoList.list[editIndex].title = titleInput.value;
+    titleInput.value = ''
+    let descInput= document.querySelector('#description')
+    myToDoList.list[editIndex].description = descInput.value;
+    descInput.value = ''
+    let dateInput = document.querySelector('#date')
+    myToDoList.list[editIndex].dueDate = dateInput.value; 
+    let projectInput = document.querySelector('#project')
+    myToDoList.list[editIndex].project = projectInput.value;
+    projectInput.value =''
     clearBody()
     body.appendChild(myNav)
     showList(myToDoList.list)
@@ -71,6 +78,7 @@ const addItem =() => {
     newToDo.title = document.querySelector('#titleinput').value;
     newToDo.description = document.querySelector('#description').value;
     newToDo.dueDate = document.querySelector('#date').value;
+    newToDo.project = document.querySelector("#project").value;
     myToDoList.addItem(newToDo);
     save()
 }
