@@ -7,7 +7,7 @@ const navBar = (navItems,selected,navItemListener) => {
     justify-content: space-between;`
     let title  = document.createElement('div')
     title.classList.add('title')
-    title.innerText='Malarky'
+    title.innerText='To Do:'
     header.appendChild(title)
     
     let navBarDiv = document.createElement('div')
