@@ -75,10 +75,18 @@ function editItem(){
 
 const addItem =() => {
     let newToDo = toDoItem();
-    newToDo.title = document.querySelector('#titleinput').value;
-    newToDo.description = document.querySelector('#description').value;
-    newToDo.dueDate = document.querySelector('#date').value;
-    newToDo.project = document.querySelector("#project").value;
+    let titleInput =document.querySelector('#titleinput')
+    newToDo.title = titleInput.value;
+    titleInput.value = ''
+    let descInput= document.querySelector('#description')
+    newToDo.description = descInput.value;
+    descInput.value = ''
+    let dateInput = document.querySelector('#date')
+    newToDo.dueDate = dateInput.value;
+    let projectInput = document.querySelector('#project')
+
+    newToDo.project = projectInput.value;
+    projectInput.value = ''
     myToDoList.addItem(newToDo);
     save()
 }
